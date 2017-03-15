@@ -10,10 +10,16 @@ const game = (state = initialState, action) => {
         ...state,
         randomNumber: Math.random()
       }
+      case 'SUBMIT_ANSWER':
+        return {
+          ...state,
+          guesses: state.guesses.concat(userGuess)
+        }
 
     default:
       return state
   }
 }
+
 
 export default game

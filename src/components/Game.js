@@ -3,8 +3,21 @@ import { connect } from 'react-redux';
 
 const Game = () => (
   <div>
-    <form action="submit"></form>
+    <form onSubmit={(e)=>{
+        e.preventDefault();
+
+        let userGuess = e.target.userGuess.value;
+    }}>
+      <input name="userGuess" type="text"/>
     <button type= "submit">Guess</button>
+    </form>
   </div>
+
 )
-export default connect()(Game)
+
+  const mapDispatchToProps = (dispatch) => ({
+    submitGuess: () => 
+  })
+
+
+export default connect(null, mapDispatchToProps)(Game)

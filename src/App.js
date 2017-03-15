@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux';
 import { generateRandomNumber } from './actions';
-import Hello from './components/Hello';
+import Game from './components/Game';
 
 class App extends Component {
 
@@ -19,7 +19,7 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
         {this.props.correctAnswer}
-        <Hello />
+        <Game />
       </div>
     );
   }
