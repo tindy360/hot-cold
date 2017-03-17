@@ -16,9 +16,10 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <h2>Welcome to Hot-n-Cold</h2>
+          <h3>Made with React with Redux</h3>
         </div>
-        {this.props.correctAnswer}
+
         <Game />
       </div>
     );

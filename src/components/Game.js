@@ -1,22 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { submitAnswer } from '../actions';
 
-const Game = () => (
+const Game = ({submitGuess}) => (
   <div>
     <form onSubmit={(e)=>{
         e.preventDefault();
 
-        let userGuess = e.target.userGuess.value;
-    }}>
+        const userGuess = e.target.userGuess.value;
+        console.log('user input', userGuess);
+        submitGuess(userGuess)
+        e.target.userGuess.value = "";
+
+      }}>
       <input name="userGuess" type="text"/>
-    <button type= "submit">Guess</button>
+    <button type="submit">Guess</button>
     </form>
   </div>
 
 )
 
   const mapDispatchToProps = (dispatch) => ({
-    submitGuess: () => 
+    submitGuess: (guess) => dispatch(submitAnswer(guess)),
   })
 
 

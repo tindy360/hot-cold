@@ -13,7 +13,7 @@ const game = (state = initialState, action) => {
       case 'SUBMIT_ANSWER':
         return {
           ...state,
-          guesses: state.guesses.concat(userGuess)
+          guesses: state.guesses.concat(action.userGuess)
         }
 
     default:
