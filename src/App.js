@@ -3,12 +3,12 @@ import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux';
 import { generateRandomNumber } from './actions';
-import Game from './components/Game';
+import Game from './components/Game/Game';
 
 class App extends Component {
 
   componentDidMount() {
-    this.props.generateCorrectAnswer()
+   this.props.generateCorrectAnswer()
   }
 
   render() {
@@ -26,9 +26,9 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  correctAnswer: state.randomNumber
-})
+const mapStateToProps = (state) =>({
+    correctAnswer: state.randomNumber
+  })
 
 const mapDispatchToProps = (dispatch) => ({
   generateCorrectAnswer: () => dispatch(generateRandomNumber())
