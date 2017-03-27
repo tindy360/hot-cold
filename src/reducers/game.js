@@ -24,6 +24,7 @@ const game = (state = initialState, action) => {
             ...state,
             message: action.displayMessage
           }
+          
 
     default:
       return state
