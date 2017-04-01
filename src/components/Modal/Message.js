@@ -1,8 +1,9 @@
 import React from 'react';
-import Button from 'react-bootstrap';
-import './Modal.css'
+import { Button, Modal } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import './Message.css'
 
-const Modal = () => ({
+const Message = ({hidden}) => (
 
       <div className="modal-container" style={{height: 200}}>
         <Button
@@ -14,7 +15,7 @@ const Modal = () => ({
         </Button>
 
         <Modal
-          show={this.state.show}
+          show={!hidden}
           onHide={close}
           container={this}
           aria-labelledby="contained-modal-title"
@@ -31,5 +32,10 @@ const Modal = () => ({
         </Modal>
       </div>
     );
-  }
-});
+
+
+
+const mapStateToProps = (state) => ({
+  hidden: state.hidden
+})
+export default connect(mapStateToProps)(Message)

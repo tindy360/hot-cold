@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { submitAnswer, displayFeedback } from '../../actions';
+import Message from '../Message/Message'
+import { submitAnswer, displayFeedback, divToggle, guessCount} from '../../actions';
 
-const Game = ({submitGuess, gameNumber, modalMessage, message}) => (
+const Game = ({submitGuess, gameNumber, modalMessage, message, toggleDiv, guessesSeen, guessCount}) => (
   <div>
     <form onSubmit={(e)=>{
         e.preventDefault();
@@ -15,7 +16,7 @@ const Game = ({submitGuess, gameNumber, modalMessage, message}) => (
 
         let displayMessage = '';
         let numberTested = Math.abs(userGuess - gameNumber)
-        
+
 
         if (numberTested < 10) {
           displayMessage = 'Hot'
@@ -51,11 +52,15 @@ const Game = ({submitGuess, gameNumber, modalMessage, message}) => (
 
         e.target.userGuess.value = "";
 
+        //if (modalMessage == 'You are correct!'){
+
+        //}
+
       }}>
       <input name="userGuess" type="number"/>
-    <button type="submit">Guess</button>
+    <button type="submit" onClick={(e)=> {toggleDiv(); guessCount();}} >Guess</button>
     </form>
-    <p>{message}</p>
+    <Message />
   </div>
 
 )
@@ -63,10 +68,13 @@ const Game = ({submitGuess, gameNumber, modalMessage, message}) => (
   const mapDispatchToProps = (dispatch) => ({
     submitGuess: (guess) => dispatch(submitAnswer(guess)),
     modalMessage: (message) => dispatch(displayFeedback(message)),
+    toggleDiv: () => dispatch(divToggle()),
+    guessCount: () => dispatch(guessCount())
   })
 
   const mapStateToProps = (state) =>({
     gameNumber: state.randomNumber,
     message: state.message,
+    guessesSeen: state.guessCount
   })
 export default connect(mapStateToProps, mapDispatchToProps)(Game)

@@ -31,7 +31,8 @@ const mapStateToProps = (state) =>({
   })
 
 const mapDispatchToProps = (dispatch) => ({
-  generateCorrectAnswer: () => dispatch(generateRandomNumber())
+  generateCorrectAnswer: () => dispatch(generateRandomNumber()),
+  //getFewestGuesses: () => dispatch(fewestGuesses())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
