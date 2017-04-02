@@ -8,9 +8,9 @@ mongoose.Promise = global.Promise;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 //connect db
-mongoose.connect('mongodb://localhost:27017/guessesdb')
+mongoose.connect('mongodb://localhost:27017/attempts')
 //get request for guess count
-app.get('/fewestGuesses', (req, res)=> {
+app.get('/attempts', (req, res)=> {
   Guesses.find({}, (err, guess) => {
     if(err){
       res.send(err)
