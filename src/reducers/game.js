@@ -3,7 +3,7 @@ const initialState = {
     randomNumber: 0,
     message: '',
     guessCount: 0,
-    bestCount: 0,
+    attempts: 0,
     hidden: true
 }
 
@@ -42,7 +42,7 @@ const game = (state = initialState, action) => {
            case 'LOAD_GUESSES':
                 return{
                 ...state,
-                bestCount: action.guesses
+                attempts: action.attempts
                     }
 
         default:

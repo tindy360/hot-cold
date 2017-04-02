@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const guessSchema = new Schema({
-  guesses: Number,
+  attemtps: Number,
 })
 
 
-module.exports = mongoose.model('Guesses', guessSchema)
+module.exports = mongoose.model('Attempts', guessSchema)

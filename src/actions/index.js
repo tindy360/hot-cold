@@ -17,15 +17,15 @@ export const divToggle = () => ({
 export const leastGuesses = () => ({
   type: 'LEAST_GUESSES'
 })
-export const loadGuesses = (guesses) => ({
+export const loadGuesses = (attempts) => ({
   type: 'LOAD_GUESSES',
-  guesses
+  attempts
 })
 export const getGuesses = () => dispatch => {
 
   fetch('http://localhost:8080/attempts')
   .then(response => response.json())
-  .then(json => dispatch(loadGuesses(json.guesses)))
+  .then(json => dispatch(loadGuesses(json.attempts)))
   .catch(ex => console.log('parsing failed', ex))
 }
 

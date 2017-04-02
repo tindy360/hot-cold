@@ -2,16 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 
-const Guesses = ({bestGuessCount, guesses}) => (
+const Guesses = ({bestGuessCount, attemtps}) => (
   <div>
     <h2>Current Best guesses</h2>
     <p>{bestGuessCount}</p>
     <h2>Current game total</h2>
-    <p>{guesses}</p>
+    <p>{attemtps}</p>
   </div>
 )
 const mapStateToProps = (state) => ({
   bestGuessCount: state.bestGuessCount,
-  guesses: state.guessCount
+  attemtps: state.guessCount
 })
 export default connect (mapStateToProps)(Guesses)
