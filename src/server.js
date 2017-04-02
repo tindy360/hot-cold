@@ -9,13 +9,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 //connect db
 mongoose.connect('mongodb://localhost:27017/guessesdb')
-
+//get request for guess count
 app.get('/fewestGuesses', (req, res)=> {
   Guesses.find({}, (err, guess) => {
     if(err){
       res.send(err)
     }
     res.json(guess)
+    console.log('sent guesses')
   })
 });
 

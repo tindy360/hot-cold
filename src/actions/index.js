@@ -22,16 +22,13 @@ export const loadGuesses = (guesses) => ({
   guesses
 })
 export const getGuesses = () => dispatch => {
-  dispatch(leastGuesses())
 
-  fetch('localhost:8080/fewestGuesses')
+  fetch('http://localhost:8080/fewestGuesses')
   .then(response => response.json())
   .then(json => dispatch(loadGuesses(json.guesses)))
   .catch(ex => console.log('parsing failed', ex))
-
 }
 
 export const guessCount = () => ({
   type: 'GUESS_COUNT'
-
 })

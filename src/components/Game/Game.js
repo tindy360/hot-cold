@@ -1,23 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Message from '../Message/Message'
+import Guesses from '../Guesses/Guesses'
 import { submitAnswer, displayFeedback, divToggle, guessCount} from '../../actions';
 
-const Game = ({submitGuess, gameNumber, modalMessage, message, toggleDiv, guessesSeen, guessCount}) => (
+const Game = ({submitGuess, gameNumber, modalMessage, message, toggleDiv, guessesSeen, countGuesses,}) => (
   <div>
     <form onSubmit={(e)=>{
         e.preventDefault();
 
+
         const userGuess = e.target.userGuess.value;
-        console.log('userGuess', userGuess);
         submitGuess(userGuess);
-        Math.round(gameNumber);
+        Math.round(gameNumber);// get whole number
         console.log('game number', gameNumber);
 
         let displayMessage = '';
         let numberTested = Math.abs(userGuess - gameNumber)
 
-
+        // check logic for diffrence form generated number
         if (numberTested < 10) {
           displayMessage = 'Hot'
           modalMessage(displayMessage)
@@ -49,18 +50,15 @@ const Game = ({submitGuess, gameNumber, modalMessage, message, toggleDiv, guesse
           modalMessage(displayMessage)
         }
 
-
         e.target.userGuess.value = "";
-
-        //if (modalMessage == 'You are correct!'){
-
-        //}
 
       }}>
       <input name="userGuess" type="number"/>
-    <button type="submit" onClick={(e)=> {toggleDiv(); guessCount();}} >Guess</button>
+    <button type="submit" onClick={(e)=> {toggleDiv(); countGuesses()}} >Guess</button>
     </form>
     <Message />
+    <Guesses />
+
   </div>
 
 )
@@ -69,7 +67,7 @@ const Game = ({submitGuess, gameNumber, modalMessage, message, toggleDiv, guesse
     submitGuess: (guess) => dispatch(submitAnswer(guess)),
     modalMessage: (message) => dispatch(displayFeedback(message)),
     toggleDiv: () => dispatch(divToggle()),
-    guessCount: () => dispatch(guessCount())
+    countGuesses: () => dispatch(guessCount())
   })
 
   const mapStateToProps = (state) =>({

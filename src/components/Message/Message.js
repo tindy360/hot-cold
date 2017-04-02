@@ -19,6 +19,7 @@ const Message = ({hidden, toggleDiv, message, generateCorrectAnswer}) => (
           </Modal.Header>
           <Modal.Body>
             {message}
+            
           </Modal.Body>
           <Modal.Footer>
             <p>Use Reset to get a new number</p>
