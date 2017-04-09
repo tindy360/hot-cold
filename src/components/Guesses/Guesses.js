@@ -11,7 +11,7 @@ const Guesses = ({bestGuessCount, attemtps}) => (
   </div>
 )
 const mapStateToProps = (state) => ({
-  bestGuessCount: state.bestGuessCount,
+  bestGuessCount: state.bestCount,
   attemtps: state.guessCount
 })
 export default connect (mapStateToProps)(Guesses)

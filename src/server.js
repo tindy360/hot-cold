@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const Attempts = require('./Models/guesses');
 app.use(express.static('public'));
 mongoose.Promise = global.Promise;
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 //connect db
 mongoose.connect('mongodb://localhost:27017/attempts')
@@ -22,7 +21,13 @@ app.get('/attempts', (req, res)=> {
 });
 
 app.post('/attempts', (req, res)=> {
-
+  Attempts.findOneAndUpdate({id: req.body.id}, {$set:{attempts: req.body.attempts}}, {new: true}, function(err, number){
+    if(err){
+      res.send(err)
+    }
+    res.json(number)
+      console.log('post received',req.body)
+});
 });
 
 

@@ -3,7 +3,7 @@ const initialState = {
     randomNumber: 0,
     message: '',
     guessCount: 0,
-    attempts: 0,
+    bestCount: 0,
     hidden: true
 }
 
@@ -14,13 +14,11 @@ const game = (state = initialState, action) => {
                 ...state,
                 randomNumber: Math.floor(Math.random() * (100 - 1) + 1)
             }
-
         case 'SUBMIT_ANSWER':
             return {
                 ...state,
-                guesses: action.userGuess,
+                guesses: action.userGuess
             }
-
         case 'DISPLAY_FEEDBACK':
             return {
                 ...state,
@@ -42,9 +40,13 @@ const game = (state = initialState, action) => {
            case 'LOAD_GUESSES':
                 return{
                 ...state,
-                attempts: action.attempts
+                bestCount: action.attempts
                     }
-
+            case 'RESET_COUNT':
+                  return{
+                    ...state,
+                      resetCount: state.guessCount = 0
+                  }
         default:
             return state
     }

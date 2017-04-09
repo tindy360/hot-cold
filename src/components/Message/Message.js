@@ -2,9 +2,9 @@ import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import './Message.css'
-import { divToggle, generateRandomNumber } from '../../actions'
+import { divToggle, generateRandomNumber, sendAttempts, resetCount } from '../../actions'
 
-const Message = ({hidden, toggleDiv, message, generateCorrectAnswer}) => (
+const Message = ({hidden, toggleDiv, message, generateCorrectAnswer, numberToSend, sendNumber}) => (
 
       <div className="modal-container" style={{height: 200}}>
 
@@ -19,13 +19,13 @@ const Message = ({hidden, toggleDiv, message, generateCorrectAnswer}) => (
           </Modal.Header>
           <Modal.Body>
             {message}
-            
+
           </Modal.Body>
           <Modal.Footer>
             <p>Use Reset to get a new number</p>
 
             <Button bsStyle="default" bsSize="large" active onClick={toggleDiv}>Close</Button>
-            <Button bsStyle="primary" bsSize="large" active className='reset' onClick={(e) => {toggleDiv(); generateCorrectAnswer() }}>Reset</Button>
+            <Button bsStyle="primary" bsSize="large" active className='reset' onClick={(e) => {toggleDiv(); generateCorrectAnswer(); sendNumber(numberToSend); resetCount() }}>Reset</Button>
           </Modal.Footer>
         </Modal>
       </div>
@@ -36,10 +36,13 @@ const Message = ({hidden, toggleDiv, message, generateCorrectAnswer}) => (
 const mapStateToProps = (state) => ({
   hidden: state.hidden,
   message: state.message,
+  numberToSend: state.guessCount
 })
 
 const mapDispatchToProps = (dispatch) => ({
   toggleDiv: () => dispatch(divToggle()),
-  generateCorrectAnswer: () => dispatch(generateRandomNumber())
+  generateCorrectAnswer: () => dispatch(generateRandomNumber()),
+  sendNumber: (numberToSend) => dispatch(sendAttempts(numberToSend)),
+  resetCount: () => dispatch(resetCount())
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Message)

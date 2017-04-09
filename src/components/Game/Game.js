@@ -9,7 +9,6 @@ const Game = ({submitGuess, gameNumber, modalMessage, message, toggleDiv, guesse
     <form onSubmit={(e)=>{
         e.preventDefault();
 
-
         const userGuess = e.target.userGuess.value;
         submitGuess(userGuess);
         Math.round(gameNumber);// get whole number
@@ -52,6 +51,9 @@ const Game = ({submitGuess, gameNumber, modalMessage, message, toggleDiv, guesse
 
         e.target.userGuess.value = "";
 
+        if (displayMessage == 'You are correct!')
+          console.log('test')
+
       }}>
       <input name="userGuess" type="number"/>
     <button type="submit" onClick={(e)=> {toggleDiv(); countGuesses()}} >Guess</button>
@@ -62,6 +64,7 @@ const Game = ({submitGuess, gameNumber, modalMessage, message, toggleDiv, guesse
   </div>
 
 )
+
 
   const mapDispatchToProps = (dispatch) => ({
     submitGuess: (guess) => dispatch(submitAnswer(guess)),
