@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux';
-import { generateRandomNumber } from './actions';
-import Hello from './components/Hello';
+import { generateRandomNumber, getGuesses } from './actions';
+import Game from './components/Game/Game';
 
 class App extends Component {
 
   componentDidMount() {
-    this.props.generateCorrectAnswer()
+   this.props.generateCorrectAnswer()
+   this.props.getStoredGuesses()
   }
 
   render() {
@@ -16,21 +17,20 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <h2>Welcome to Hot-n-Cold</h2>
+          <h3>Made with React with Redux</h3>
         </div>
-        {this.props.correctAnswer}
-        <Hello />
+
+        <Game />
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  correctAnswer: state.randomNumber
-})
 
 const mapDispatchToProps = (dispatch) => ({
-  generateCorrectAnswer: () => dispatch(generateRandomNumber())
+  generateCorrectAnswer: () => dispatch(generateRandomNumber()),
+  getStoredGuesses: () => dispatch(getGuesses())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);
